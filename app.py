@@ -1,3 +1,4 @@
+import os
 import gdown
 import pandas as pd
 from flask import Flask, render_template_string, request, jsonify
@@ -230,7 +231,8 @@ def autocomplete():
     return jsonify(suggestions)
 
 # -------------------------------
-# Run the Flask App
+# Run the Flask App with Port Binding for Render
 # -------------------------------
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
