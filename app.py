@@ -7,10 +7,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Use the raw URL for the Excel file from GitHub
 EXCEL_URL = (
-    "https://raw.githubusercontent.com/aditya-gupta-andc/Securepin/"
-    "6d06d3f715f14b8ec34c5d98d8f511f7b99ca702/Ghosi_IDF_Jan.xlsx"
+    "https://raw.githubusercontent.com/aditya-gupta-andc/webpage/"
+    "c6799cd0251bcd589bb08a6b63157c29e11f4273/master25.xlsx"
 )
-
 # Load the Excel file into a DataFrame at startup.
 try:
     df = pd.read_excel(EXCEL_URL)
