@@ -32,16 +32,24 @@ HTML_TEMPLATE = '''
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <style>
       body { background: #f8f9fa; }
-      .container { max-width: 600px; margin-top: 50px; }
-      .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+      .container { max-width: 90%; margin-top: 50px; }
+      .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; }
       .result-table th { width: 40%; }
       #search-again { display: none; } /* Hide the "Search Again" button initially */
+      .loader { display: none; margin: 10px auto; border: 5px solid #f3f3f3; border-radius: 50%; border-top: 5px solid #3498db; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+      @keyframes spin { 100% { transform: rotate(360deg); } }
+      @media (max-width: 600px) { 
+        .container { max-width: 95%; } 
+        h2 { font-size: 22px; }
+        .form-label { font-size: 14px; }
+        .btn { font-size: 14px; padding: 10px; }
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="card p-4">
-        <h2 class="card-title text-center mb-4">Consumer Lookup</h2>
+        <h2 class="card-title text-center mb-3">Consumer Lookup</h2>
 
         <div id="search-section">
           <form method="post" action="/search" id="search-form">
@@ -51,6 +59,9 @@ HTML_TEMPLATE = '''
             </div>
             <div class="d-grid">
               <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            <div class="text-center">
+              <div class="loader" id="loading"></div>
             </div>
           </form>
         </div>
@@ -67,7 +78,7 @@ HTML_TEMPLATE = '''
         
         {% if result %}
           <div id="result-section" class="mt-4">
-            <h4>Consumer Details</h4>
+            <h4 class="text-center">Consumer Details</h4>
             <table class="table table-bordered result-table">
               <tbody>
                 {% for key, value in result.items() %}
@@ -108,6 +119,11 @@ HTML_TEMPLATE = '''
             });
           },
           minLength: 1
+        });
+
+        // Show loading animation when searching
+        $("#search-form").submit(function(){
+          $("#loading").show();
         });
       });
 
