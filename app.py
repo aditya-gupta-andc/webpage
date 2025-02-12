@@ -8,9 +8,9 @@ logging.basicConfig(level=logging.DEBUG)
 # Use the raw URL for the Excel file from GitHub
 EXCEL_URL = (
     "https://github.com/aditya-gupta-andc/webpage/"
-    "1e7644e63d4d6a4db4bc3c5eb95e27f182a02558/master.xlsx"
+    "7f71424bde7b11e34d9e9c0b61284b126ace26f3/master25.xlsx"
 )
-#https://github.com/aditya-gupta-andc/webpage/blob/
+#hhttps://github.com/aditya-gupta-andc/webpage/blob/7f71424bde7b11e34d9e9c0b61284b126ace26f3/master25.xlsx
 
 # Load the Excel file into a DataFrame at startup.
 try:
