@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 # Use the raw URL for the Excel file from GitHub
 EXCEL_URL = (
     "https://github.com/aditya-gupta-andc/webpage/"
-    "1e7644e63d4d6a4db4bc3c5eb95e27f182a02558/masterdata.xlsx"
+    "1e7644e63d4d6a4db4bc3c5eb95e27f182a02558/master.xlsx"
 )
 #https://github.com/aditya-gupta-andc/webpage/blob/
 
