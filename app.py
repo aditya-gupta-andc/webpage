@@ -7,9 +7,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Use the raw URL for the Excel file from GitHub
 EXCEL_URL = (
-    "https://raw.githubusercontent.com/aditya-gupta-andc/Securepin/"
-    "6d06d3f715f14b8ec34c5d98d8f511f7b99ca702/Ghosi_IDF_Jan.xlsx"
+    "https://raw.githubusercontent.com/aditya-gupta-andc/webpage/"
+    "cecb5726ad4b915b8cfe12ccfa1d6867f857e164/master25.xlsx"
 )
+
 
 # Load the Excel file into a DataFrame at startup.
 try:
@@ -36,13 +37,35 @@ HTML_TEMPLATE = '''
       .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; }
       .result-table th { width: 40%; }
       #search-again { display: none; } /* Hide the "Search Again" button initially */
-      .loader { display: none; margin: 10px auto; border: 5px solid #f3f3f3; border-radius: 50%; border-top: 5px solid #3498db; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+      
+      /* Loading animation */
+      .loader { 
+        display: none; 
+        margin: 10px auto; 
+        border: 5px solid #f3f3f3; 
+        border-radius: 50%; 
+        border-top: 5px solid #3498db; 
+        width: 30px; 
+        height: 30px; 
+        animation: spin 1s linear infinite; 
+      }
       @keyframes spin { 100% { transform: rotate(360deg); } }
+
+      /* Make table scrollable on small screens */
+      .table-responsive { overflow-x: auto; }
+
+      /* Improve table layout for small screens */
       @media (max-width: 600px) { 
         .container { max-width: 95%; } 
         h2 { font-size: 22px; }
         .form-label { font-size: 14px; }
         .btn { font-size: 14px; padding: 10px; }
+
+        /* Ensure table adjusts properly */
+        .result-table th, .result-table td {
+          font-size: 14px;
+          padding: 8px;
+        }
       }
     </style>
   </head>
@@ -79,16 +102,18 @@ HTML_TEMPLATE = '''
         {% if result %}
           <div id="result-section" class="mt-4">
             <h4 class="text-center">Consumer Details</h4>
-            <table class="table table-bordered result-table">
-              <tbody>
-                {% for key, value in result.items() %}
-                  <tr>
-                    <th>{{ key }}</th>
-                    <td>{{ value }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+            <div class="table-responsive">  <!-- NEW: Scrollable Table Wrapper -->
+              <table class="table table-bordered result-table">
+                <tbody>
+                  {% for key, value in result.items() %}
+                    <tr>
+                      <th>{{ key }}</th>
+                      <td>{{ value }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
           <script>
             document.getElementById("search-section").style.display = "none";
